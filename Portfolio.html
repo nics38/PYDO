@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provincial Youth Development Office - Camarines Norte</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!-- SWIPER CSS LINK -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <!-- FONT AWESOME CDN LINK -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+     <!-- Bootstrap CSS -->
+         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+
+    <!-- BOOTSTRAP CSS LINK -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CUSTOM CSS FILE LINK -->
+    <link rel="stylesheet" href="designs.css">
+    <style>
+       /* Basic Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Portfolio Section */
+.portfolio-filter h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 3rem;
+    color: #333;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.filter-buttons button {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 2px solid #2db914;;
+    background-color: transparent;
+    color: #2db914;;
+    transition: all 0.3s ease-in-out;
+}
+
+.filter-buttons button:hover,
+.filter-buttons .active {
+    background-color: #2db914;;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* Portfolio Items */
+.portfolio-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.portfolio-item {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95); /* Added translateY for fade-up effect */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    visibility: hidden;
+}
+
+.portfolio-item.show {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Adjusted transform for fade-up effect */
+    visibility: visible;
+}
+
+.portfolio-item.hide {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95); /* Adjusted transform for fade-up effect */
+    visibility: hidden;
+    display: none;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+
+   
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.05);
+}
+
+/* The Modal (background) */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    
+}
+
+/* Modal Content (the image) */
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    
+}
+
+/* Caption text */
+#caption {
+    margin: auto;
+    display: block;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.lightbox-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)} 
+    to {transform: scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Dropdown menu styles */
+.dropdown-menu {
+    display: none; /* Hide by default */
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+    list-style: none; /* Remove bullet points */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    position: absolute; /* Position relative to the parent */
+    top: 100%; /* Align dropdown menu with the bottom of the parent link */
+    left: 0; /* Align dropdown menu to the left of the parent link */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* Dropdown menu visible state */
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    visibility: visible; /* Ensure it is visible */
+}
+
+/* Prevent dropdown from closing when clicking inside */
+.dropdown-menu {
+    pointer-events: auto; /* Allow interaction with menu items */
+}
+    .navbar a:focus,
+    .navbar a:active,
+    .navbar a:visited {
+    background-color: transparent; /* Remove or adjust background color */
+    outline: transparent; /* Remove default outline */
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER SECTION STARTS -->
+    <section class="header">
+        <a href="Home.html" class="logo">
+            <img src="images/LOGO.png">
+            <div>
+                <span class="logo-text">Provincial Youth Development Office</span>
+                <p>Camarines Norte</p>
+            </div>
+        </a>
+
+        <nav class="navbar">
+            <a href="Home.html">Home</a>
+            <a href="About.html">About</a>
+
+            <div class="dropdown">
+            <a href="Portfolio.html" class="active">
+                Portfolio
+                <span class="dropdown-toggle" id="programsDropdown" role="button"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+                <li><a class="dropdown-item" href="Programs.html">Programs</a></li>
+            </ul>
+        </div>
+
+            <a href="Advocacy.html">Advocacy</a>
+        </nav>
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+    </section>
+
+    <!-- GALLERY SECTION STARTS -->
+    <section class="portfolio-filter">
+        <h2>Our Program's Portfolio</h2>
+        <div class="filter-buttons">
+            <button class="btn btn-primary filter-button active" data-category="all">ALL</button>
+            <button class="btn btn-primary filter-button" data-category="cse">FREE CSE REVIEW</button>
+            <button class="btn btn-primary filter-button" data-category="pkd">PKD</button>
+            <button class="btn btn-primary filter-button" data-category="syc">BANTAYOG SYC</button>
+            <button class="btn btn-primary filter-button" data-category="cle">FREE CLE REVIEW</button>
+            <button class="btn btn-primary filter-button" data-category="let">FREE LET REVIEW</button>
+            <button class="btn btn-primary filter-button" data-category="lnk">LNK</button>
+        </div>
+        <div id="cse">
+        </div>
+
+        <div class="portfolio-container">
+
+            <div id="lightbox" class="lightbox">
+                <span class="close">&times;</span>
+                <img class="lightbox-content" id="lightbox-img">            </div>
+           
+
+            <div class="portfolio-item cse">
+                <div class="card">
+                    <img src="images/cse0.png" alt="cse">
+                </div>
+          </div>
+
+
+          <div class="portfolio-item cse">
+                  <div class="card">
+                      <img src="images/cse1.png" alt="cse">
+                  </div>
+            </div>
+               <div class="portfolio-item cse">
+                    <div class="card">
+                        <img src="images/cse2.png" alt="cse">
+                    </div>
+              </div>
+                  <div class="portfolio-item cse">
+                      <div class="card">
+                          <img src="images/cse3.png" alt="cse">
+                  </div>
+                </div>
+                    <div class="portfolio-item cse">
+                        <div class="card">
+                            <img src="images/cse4.png" alt="cse">
+                        </div>
+                  </div>
+                  <div class="portfolio-item cse">
+                    <div class="card">
+                        <img src="images/cse5.png" alt="cse">
+                    </div>
+                  </div>
+
+       
+                  <div class="portfolio-item cse">
+                      <div class="card">
+                          <img src="images/cse6.png" alt="cse">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item cse">
+                        <div class="card">
+                            <img src="images/cse7.png" alt="cse">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item cse">
+                          <div class="card">
+                              <img src="images/cse8.png" alt="cse">
+                          </div>
+                      </div>
+
+                        <div class="portfolio-item cse">
+                            <div class="card">
+                                <img src="images/cse9.png" alt="cse">
+                            </div>
+                        </div>
+
+                          <div class="portfolio-item cse">
+                              <div class="card">
+                                  <img src="images/cse10.png" alt="cse">
+                              </div>
+                          </div>
+
+                            <div class="portfolio-item cse">
+                                <div class="card">
+                                    <img src="images/cse11.png" alt="cse">
+                                </div>
+                            </div>
+
+                              <div class="portfolio-item cse">
+                                <div class="card">
+                                    <img src="images/cse13.jpg" alt="cse">
+                                </div>
+                            </div>
+
+                            <div class="portfolio-item cse">
+                                <div class="card">
+                                    <img src="images/cse14.jpg" alt="cse">
+                                </div>
+                            </div>
+
+                            
+                            <div class="portfolio-item cse">
+                                <div class="card">
+                                    <img src="images/cse15.jpg" alt="cse">
+                                </div>
+                            </div>
+                            
+                            <div class="portfolio-item cse">
+                                <div class="card">
+                                    <img src="images/cse16.jpg" alt="cse">
+                                </div>
+                            </div>
+
+                            <div class="portfolio-item cse">
+                                <div class="card">
+                                    <img src="images/cse17.jpg" alt="cse">
+                                </div>
+                            </div>
+
+
+
+                              
+    <!-- FREE CSE ENDS HERE-->
+ 
+    <div class="portfolio-item pkd">
+        <div class="card">
+            <img src="images/pkd0.jpg" alt="pkd">
+        </div>
+  </div>
+
+  <div class="portfolio-item pkd">
+          <div class="card">
+              <img src="images/pkd1.jpg" alt="pkd">
+          </div>
+    </div>
+       <div class="portfolio-item pkd">
+            <div class="card">
+                <img src="images/pkd2.jpg" alt="pkd">
+            </div>
+      </div>
+          <div class="portfolio-item pkd">
+              <div class="card">
+                  <img src="images/pkd3.jpg" alt="pkd">
+          </div>
+        </div>
+            <div class="portfolio-item pkd">
+                <div class="card">
+                    <img src="images/pkd4.jpg" alt="pkd">
+                </div>
+          </div>
+          <div class="portfolio-item pkd">
+            <div class="card">
+                <img src="images/pkd5.jpg" alt="pkd">
+            </div>
+          </div>
+
+
+          <div class="portfolio-item pkd">
+              <div class="card">
+                  <img src="images/pkd6.jpg" alt="pkd">
+              </div>
+          </div>
+
+            <div class="portfolio-item pkd">
+                <div class="card">
+                    <img src="images/pkd7.jpg" alt="pkd">
+                </div>
+            </div>
+
+              <div class="portfolio-item pkd">
+                  <div class="card">
+                      <img src="images/pkd8.jpg" alt="pkd">
+                  </div>
+              </div>
+
+                <div class="portfolio-item pkd">
+                    <div class="card">
+                        <img src="images/pkd9.jpg" alt="pkd">
+                    </div>
+                </div>
+
+                  <div class="portfolio-item pkd">
+                      <div class="card">
+                          <img src="images/pkd10.jpg" alt="pkd">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item pkd">
+                        <div class="card">
+                            <img src="images/pkd11.jpg" alt="pkd">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item pkd">
+                          <div class="card">
+                              <img src="images/pkd12.jpg" alt="pkd">
+                          </div>
+                      </div>
+    <!-- PKD ENDS HERE-->
+
+    <div class="portfolio-item syc">
+        <div class="card">
+            <img src="images/syc0.jpg" alt="syc">
+        </div>
+  </div>
+
+  <div class="portfolio-item syc">
+          <div class="card">
+              <img src="images/syc1.jpg" alt="syc">
+          </div>
+    </div>
+       <div class="portfolio-item syc">
+            <div class="card">
+                <img src="images/syc2.jpg" alt="syc">
+            </div>
+      </div>
+          <div class="portfolio-item syc">
+              <div class="card">
+                  <img src="images/syc3.jpg" alt="syc">
+          </div>
+        </div>
+            <div class="portfolio-item syc">
+                <div class="card">
+                    <img src="images/syc4.jpg" alt="syc">
+                </div>
+          </div>
+          <div class="portfolio-item syc">
+            <div class="card">
+                <img src="images/syc5.jpg" alt="syc">
+            </div>
+          </div>
+
+
+          <div class="portfolio-item syc">
+              <div class="card">
+                  <img src="images/syc6.jpg" alt="syc">
+              </div>
+          </div>
+
+            <div class="portfolio-item syc">
+                <div class="card">
+                    <img src="images/syc7.jpg" alt="syc">
+                </div>
+            </div>
+
+              <div class="portfolio-item syc">
+                  <div class="card">
+                      <img src="images/syc8.jpg" alt="syc">
+                  </div>
+              </div>
+
+                <div class="portfolio-item syc">
+                    <div class="card">
+                        <img src="images/syc9.jpg" alt="syc">
+                    </div>
+                </div>
+
+                  <div class="portfolio-item syc">
+                      <div class="card">
+                          <img src="images/syc10.jpg" alt="syc">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item syc">
+                        <div class="card">
+                            <img src="images/syc11.jpg" alt="syc">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item syc">
+                          <div class="card">
+                              <img src="images/syc12.jpg" alt="syc">
+                          </div>
+                      </div>
+
+
+                  <div class="portfolio-item syc">
+                      <div class="card">
+                          <img src="images/syc13.jpg" alt="syc">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item syc">
+                        <div class="card">
+                            <img src="images/syc14.jpg" alt="syc">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item syc">
+                          <div class="card">
+                              <img src="images/syc15.jpg" alt="syc">
+                          </div>
+                      </div>
+
+
+                  <div class="portfolio-item syc">
+                      <div class="card">
+                          <img src="images/syc16.jpg" alt="syc">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item syc">
+                        <div class="card">
+                            <img src="images/syc17.jpg" alt="syc">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item syc">
+                          <div class="card">
+                              <img src="images/syc18.jpg" alt="syc">
+                          </div>
+                      </div>
+
+
+                  <div class="portfolio-item syc">
+                      <div class="card">
+                          <img src="images/syc19.jpg" alt="syc">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item syc">
+                        <div class="card">
+                            <img src="images/syc20.jpg" alt="syc">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item syc">
+                          <div class="card">
+                              <img src="images/syc21.jpg" alt="syc">
+                          </div>
+                      </div>
+
+                      <div class="portfolio-item syc">
+                          <div class="card">
+                              <img src="images/syc22.jpg" alt="syc">
+                          </div>
+                      </div>
+
+    <!-- BANTAYOG SYC ENDS HERE-->
+
+    <div class="portfolio-item cle">
+        <div class="card">
+            <img src="images/cle0.jpg" alt="cle">
+        </div>
+  </div>
+
+  <div class="portfolio-item cle">
+          <div class="card">
+              <img src="images/cle1.jpg" alt="cle">
+          </div>
+    </div>
+       <div class="portfolio-item cle">
+            <div class="card">
+                <img src="images/cle2.jpg" alt="cle">
+            </div>
+      </div>
+          <div class="portfolio-item cle">
+              <div class="card">
+                  <img src="images/cle3.jpg" alt="cle">
+          </div>
+        </div>
+            <div class="portfolio-item cle">
+                <div class="card">
+                    <img src="images/cle4.jpg" alt="cle">
+                </div>
+          </div>
+          <div class="portfolio-item cle">
+            <div class="card">
+                <img src="images/cle5.jpg" alt="cle">
+            </div>
+          </div>
+
+
+          <div class="portfolio-item cle">
+              <div class="card">
+                  <img src="images/cle6.jpg" alt="cle">
+              </div>
+          </div>
+
+            <div class="portfolio-item cle">
+                <div class="card">
+                    <img src="images/cle7.jpg" alt="cle">
+                </div>
+            </div>
+
+              <div class="portfolio-item cle">
+                  <div class="card">
+                      <img src="images/cle8.jpg" alt="cle">
+                  </div>
+              </div>
+
+                <div class="portfolio-item cle">
+                    <div class="card">
+                        <img src="images/cle9.jpg" alt="cle">
+                    </div>
+                </div>
+
+                  <div class="portfolio-item cle">
+                      <div class="card">
+                          <img src="images/cle10.jpg" alt="cle">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle11.jpg" alt="cle">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item cle">
+                          <div class="card">
+                              <img src="images/cle12.jpg" alt="cle">
+                          </div>
+                      </div>
+
+
+                  <div class="portfolio-item cle">
+                      <div class="card">
+                          <img src="images/cle13.jpg" alt="cle">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle14.jpg" alt="cle">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item cle">
+                          <div class="card">
+                              <img src="images/cle15.jpg" alt="cle">
+                          </div>
+                      </div>
+
+
+                  <div class="portfolio-item cle">
+                      <div class="card">
+                          <img src="images/cle16.jpg" alt="cle">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle17.jpg" alt="cle">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item cle">
+                          <div class="card">
+                              <img src="images/cle18.jpg" alt="cle">
+                          </div>
+                      </div>
+
+
+                  <div class="portfolio-item cle">
+                      <div class="card">
+                          <img src="images/cle19.jpg" alt="cle">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle20.jpg" alt="cle">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item cle">
+                          <div class="card">
+                              <img src="images/cle21.jpg" alt="cle">
+                          </div>
+                      </div>
+
+                      <div class="portfolio-item cle">
+                          <div class="card">
+                              <img src="images/cle22.jpg" alt="cle">
+                          </div>
+                      </div>
+
+                      <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle24.jpg" alt="cle">
+                        </div>
+                    </div>
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle25.jpg" alt="cle">
+                        </div>
+                    </div>
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle26.jpg" alt="cle">
+                        </div>
+                    </div>
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle27.jpg" alt="cle">
+                        </div>
+                    </div>
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle28.jpg" alt="cle">
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle29.jpg" alt="cle">
+                        </div>
+                    </div>
+                    <div class="portfolio-item cle">
+                        <div class="card">
+                            <img src="images/cle30.jpg" alt="cle">
+                        </div>
+                    </div>
+               <!-- FREE CLE ENDS HERE-->
+
+               <div class="portfolio-item let">
+                <div class="card">
+                    <img src="images/let0.jpg" alt="let">
+                </div>
+          </div>
+
+
+          <div class="portfolio-item let">
+                  <div class="card">
+                      <img src="images/let1.jpg" alt="let">
+                  </div>
+            </div>
+               <div class="portfolio-item let">
+                    <div class="card">
+                        <img src="images/let2.jpg" alt="let">
+                    </div>
+              </div>
+                  <div class="portfolio-item let">
+                      <div class="card">
+                          <img src="images/let3.jpg" alt="let">
+                  </div>
+                </div>
+                    <div class="portfolio-item let">
+                        <div class="card">
+                            <img src="images/let4.jpg" alt="let">
+                        </div>
+                  </div>
+                  <div class="portfolio-item let">
+                    <div class="card">
+                        <img src="images/let5.jpg" alt="let">
+                    </div>
+                  </div>
+
+       
+                  <div class="portfolio-item let">
+                      <div class="card">
+                          <img src="images/let6.jpg" alt="let">
+                      </div>
+                  </div>
+
+                    <div class="portfolio-item let">
+                        <div class="card">
+                            <img src="images/let7.jpg" alt="let">
+                        </div>
+                    </div>
+
+                      <div class="portfolio-item let">
+                          <div class="card">
+                              <img src="images/let8.jpg" alt="let">
+                          </div>
+                      </div>
+
+                        <div class="portfolio-item let">
+                            <div class="card">
+                                <img src="images/let9.jpg" alt="let">
+                            </div>
+                        </div>
+
+                          <div class="portfolio-item let">
+                              <div class="card">
+                                  <img src="images/let10.jpg" alt="let">
+                              </div>
+                          </div>
+
+                            <div class="portfolio-item let">
+                                <div class="card">
+                                    <img src="images/let11.jpg" alt="let">
+                                </div>
+                            </div>
+
+                              <div class="portfolio-item let">
+                                <div class="card">
+                                    <img src="images/let13.jpg" alt="let">
+                                </div>
+                            </div>
+
+                            <div class="portfolio-item let">
+                                <div class="card">
+                                    <img src="images/let14.jpg" alt="let">
+                                </div>
+                            </div>
+
+                            
+                            <div class="portfolio-item let">
+                                <div class="card">
+                                    <img src="images/let15.jpg" alt="let">
+                                </div>
+                            </div>
+                            
+                            <div class="portfolio-item let">
+                                <div class="card">
+                                    <img src="images/let16.jpg" alt="let">
+                                </div>
+                            </div>
+
+
+
+             <!-- FREE LET ENDS HERE-->
+
+<!-- LNK STARTS HERE-->
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK11.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK2.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK3.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK4.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK5.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK6.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK7.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK8.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK9.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK10.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK12.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK13.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK14.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK15.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK55.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK16.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK17.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK18.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK19.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK20.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK21.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK22.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK23.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK24.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK25.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK26.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK27.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK28.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK29.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK30.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK31.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK32.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK33.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK34.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK35.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK36.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK37.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK38.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK39.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK40.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK41.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK42.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK43.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK44.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK45.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK46.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK47.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK48.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK49.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK50.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK51.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK52.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK53.jpg" alt="lnk">
+    </div>
+</div>
+
+<div class="portfolio-item lnk">
+    <div class="card">
+        <img src="images/LNK54.jpg" alt="lnk">
+    </div>
+</div>
+
+             <!-- LNK ENDS HERE-->
+
+
+            <!-- Add more items as needed -->
+        </div>
+    </section>
+    <!-- GALLERY SECTION ENDS -->
+
+    <!--FOOTER SECTION STARTS-->
+    <section class="footer">
+        <div class="box-container">
+
+            <div class="box">
+                <h3>Quick Links</h3>
+                <a href="https://nyc.gov.ph/" target="_blank"> <i class="fas fa-angle-right"></i> National Youth
+                    Commission</a>
+                <a href="https://yorpnyc.org.ph/" target="_blank"> <i class="fas fa-angle-right"></i> KABAYANI:
+                    Kabataang Nagbabayanihan</a>
+                <a href="https://drive.google.com/file/d/1PxVj7apTCK-utUtla5gUV68w_jxfH3p5/view" target="_blank"> <i
+                        class="fas fa-angle-right"></i> Philippine Youth Development Plan 2023-2028</a>
+            </div>
+
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a> <i class="fas fa-phone"></i> +63 912 036 6685</a>
+                <a> <i class="fas fa-envelope" autocapitalize="off"></i> pydocamarinesnorte@gmail.com </a>
+                <a href="https://www.facebook.com/pydocamnorte" target="_blank"> <i
+                        class="fa-brands fa-facebook-messenger"></i> PYDO - CN</a>
+            </div>
+
+            <div class="box">
+                <h3>Follow Us On Facebook</h3>
+                <a href="https://www.facebook.com/nationalyouthcommission" target="_blank"> <i
+                        class="fas fa-angle-right" aria-hidden="true"></i> National Youth Commission</a>
+                <a href="https://www.facebook.com/pydocamnorte" target="_blank"><i class="fas fa-angle-right"
+                        aria-hidden="true"></i> Provincial Youth Development Office</a>
+                <a href="https://www.facebook.com/yorpnyc/" target="_blank"> <i class="fas fa-angle-right"
+                        aria-hidden="true"></i> Youth Organization Registration Program
+                </a>
+            </div>
+        </div>
+        <div class="credit"><h5>Created by PYDO Interns 2024</h5>
+            <a> ALL RIGHTS RESERVED </a>
+        </div>    
+    </section>
+    <!--FOOTER SECTION ENDS-->
+
+
+    <!-- SWIPER JS LINK -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- JQUERY JS LINK -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- BOOTSTRAP JS LINK -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- CUSTOM JS FILE LINK -->
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.filter-button').on('click', function () {
+                var selectedCategory = $(this).data('category');
+                $('.filter-button').removeClass('active');
+                $(this).addClass('active');
+        
+                if (selectedCategory === 'all') {
+                    $('.portfolio-item').each(function () {
+                        $(this).removeClass('hide').addClass('show');
+                    });
+                } else {
+                    $('.portfolio-item').each(function () {
+                        if ($(this).hasClass(selectedCategory)) {
+                            $(this).removeClass('hide').addClass('show');
+                        } else {
+                            $(this).removeClass('show').addClass('hide');
+                        }
+                    });
+                }
+            });
+        
+            // Trigger initial filter to show all items
+            $('.filter-button.active').trigger('click');
+        });
+        
+        // Get the modal
+var lightbox = document.getElementById('lightbox');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var lightboxImg = document.getElementById("lightbox-img");
+var captionText = document.getElementById("caption");
+document.querySelectorAll('.portfolio-item img').forEach(function(img) {
+    img.addEventListener('click', function() {
+        lightbox.style.display = "block";
+        lightboxImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    });
+});
+
+// Get the <span> element that closes the modal
+var closeBtn = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+closeBtn.onclick = function() { 
+    lightbox.style.display = "none";
+}
+
+// Close the modal when the user clicks anywhere outside of the image
+lightbox.onclick = function(event) {
+    if (event.target == lightbox) {
+        lightbox.style.display = "none";
+    }
+}
+
+
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownToggle = document.getElementById('programsDropdown');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        dropdownToggle.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default action if needed (optional)
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Optional: Close the dropdown if clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    });
+</script>
+
+    
+
+</body>
+
+</html>
+ 
